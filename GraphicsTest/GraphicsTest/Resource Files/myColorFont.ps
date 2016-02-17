@@ -1,0 +1,43 @@
+cbuffer cbChangesPerFrame : register( b0 )
+{
+    matrix mvp_;
+};
+
+
+Texture2D colorMap_ : register( t0 );
+SamplerState colorSampler_ : register( s0 );
+
+cbuffer PixelBuffer : register(b0)
+{
+	float4 pixelColor;
+};
+
+struct PS_Input
+{
+    float4 pos   : SV_POSITION;
+    float2 tex0 : TEXCOORD0;
+};
+
+
+float4 PS_Main( PS_Input frag ) : SV_TARGET
+{
+	float4 color;
+
+	// Sample the texture pixel at this location.
+	color = colorMap_.Sample(colorSampler_, frag.tex0);
+	
+	// If the color is black on the texture then treat this pixel as transparent.
+	if(color.r == 1.0f || color.r == 0.0f)
+	{
+		color.a = 0.0f;
+	}
+	
+	// If the color is other than black on the texture then this is a pixel in the font so draw it using the font pixel color.
+	else
+	{
+		color.rgb = pixelColor.rgb;// * color.rgb;
+		color.a = 1.0f;
+	}
+
+    return color;
+}

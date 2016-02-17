@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{a7aac390-5ab1-429a-8a76-0781a6520ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{9349553a-8ae1-4354-8745-065f071bd5b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{0b0a5060-eae4-4941-8afb-8ef9f64cf76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{54a8de9e-be5c-4ef3-9d47-089f6fc34fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{d3f77b38-b64d-430b-8e40-7a62e06aac4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TileMap">
+      <UniqueIdentifier>{f0afdeb4-3c58-484d-9e55-3d0529e64ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{92d3b5b8-a4dd-49d0-bd56-a9792d9fdb4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{918f4093-1cd1-4c2b-a5cc-c54085462ec4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Utility Files\Timer.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\cameraclass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\d3dclass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\graphicsclass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager Files\InputManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager Files\ObjectManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Event Files\EventManager.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="systemclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility Files\ConsoleWindow.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap Files\TileMap.cpp">
+      <Filter>TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility Files\tinyxml2.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\pch.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\WICTextureLoader.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Object Files\BaseObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Object Files\PlayerObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\BitmapClass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics Files\AABB.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\BitmapFontClass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility Files\Locator.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="State Files\BaseState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State Files\GameplayState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State Files\EntryState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State Files\MenuState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="State Files\OptionsState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager Files\SoundManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics Files\AnimationClass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utility Files\Timer.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\VK_Codes.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\cameraclass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\d3dclass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\graphicsclass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager Files\InputManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager Files\ObjectManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Event Files\Event.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event Files\EventManager.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Event Files\IListener.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="systemclass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Object Files\PlayerObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\ConsoleWindow.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap Files\TileMap.h">
+      <Filter>TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\tinyxml2.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\DirectXHelpers.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\pch.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\PlatformHelpers.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\WICTextureLoader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Object Files\BaseObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GUTILITY.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\BitmapClass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics Files\AABB.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\BitmapFontClass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\Locator.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\NullConsoleWindow.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State Files\BaseState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="State Files\GameplayState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="State Files\EntryState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="State Files\MenuState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="State Files\OptionsState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager Files\SoundManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\NullSoundManager.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\AnimationClass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\myColor.ps">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resource Files\myColor.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resource Files\myColorFont.ps">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

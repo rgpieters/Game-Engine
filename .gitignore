@@ -1,0 +1,10 @@
+GraphicsTest/Debug/GraphicsTest.exe
+GraphicsTest/Debug/GraphicsTest.ilk
+*.pdb
+GraphicsTest/GraphicsTest.opensdf
+*.obj
+GraphicsTest/GraphicsTest/Debug/GraphicsTest.log
+*.idb
+GraphicsTest/GraphicsTest/Debug/GraphicsTest.tlog/link.write.1.tlog
+*.tlog
+GraphicsTest/GraphicsTest.sdf

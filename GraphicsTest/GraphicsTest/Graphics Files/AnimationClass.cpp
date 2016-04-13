@@ -7,6 +7,7 @@ AnimationClass::AnimationClass()
 	m_CurrentFrame = 0;
 	m_CurrentDuration = 0.0f;
 	m_PlayAnimation = false;
+	m_OscillatingUpwards = true;
 }
 
 AnimationClass::AnimationClass(const AnimationClass& other)
@@ -49,7 +50,7 @@ void AnimationClass::Update(float fDt)
 	if (m_AnimationType == NONE || m_PlayAnimation == false)
 		return;
 
-	m_CurrentDuration += fDt; // * m_Speed;
+	m_CurrentDuration += fDt * m_Speed;
 
 	if (m_CurrentDuration >= m_FrameList[m_CurrentFrame].frameDuration)
 	{
@@ -75,11 +76,33 @@ void AnimationClass::Update(float fDt)
 				Locator::GetConsoleWindow().WriteToConsole(m_CurrentFrame);
 			}
 			break;
-			case OSCILIATING: // this is a reverse loop, not oscilating
+			case REVERSE:
 			{
 				m_CurrentFrame--;
 				if (m_CurrentFrame < 0)
 					m_CurrentFrame = m_FrameList.size() - 1;
+			}
+			break;
+			case OSCILLATING:
+			{
+				if (m_OscillatingUpwards)
+				{
+					m_CurrentFrame++;
+					if (m_CurrentFrame >= (int)m_FrameList.size())
+					{
+						m_CurrentFrame = m_FrameList.size() - 1;
+						m_OscillatingUpwards = false;
+					}
+				}
+				else
+				{
+					m_CurrentFrame--;
+					if (m_CurrentFrame < 0)
+					{
+						m_CurrentFrame = 0;
+						m_OscillatingUpwards = true;
+					}
+				}
 			}
 			break;
 		}
@@ -106,9 +129,17 @@ void AnimationClass::LoadAnimationFromFile(char* animationFileName, string& text
 
 	if (file.is_open())
 	{
-		// Duration of all frames
+		// Name of Animation
 		getline(file, line);
-		tempFrame.frameDuration = std::stof(line);
+		char buffers[10];
+		int rIndex = line.find("\r");
+		memset(&buffers[0], 0, sizeof(buffers));
+		line.copy(buffers, rIndex, 0);
+		m_AnimationName = buffers;
+
+		// Speed of the animation
+		getline(file, line);
+		m_Speed = std::stof(line);
 
 		// Image of the animation
 		getline(file, line);
@@ -130,16 +161,21 @@ void AnimationClass::LoadAnimationFromFile(char* animationFileName, string& text
 
 		while (getline(file, line))
 		{
-			//getline(file, line);
+			// Frame Duration
+			endIndex = line.find("\r");
+			line.copy(buffer, endIndex, 0);
+			tempFrame.frameDuration = atof(buffer);
+			memset(&buffer[0], 0, sizeof(buffer));
+
 			// TOP LEFT
+			getline(file, line);
 			commaIndex = line.find(",");
 			endIndex = line.find("\r");
 			line.copy(buffer, commaIndex, 0);
 			floatX = atof(buffer);
-			//buffer[0] = 0;
 			line.copy(buffer, endIndex - commaIndex, commaIndex + 1);
 			floatY = atof(buffer);
-			//buffer[0] = 0;
+			memset(&buffer[0], 0, sizeof(buffer));
 			tempFrame.UVs[BitmapClass::TOP_LEFT] = XMFLOAT2(floatX / imageWidth, floatY / imageHeight);
 
 			// TOP RIGHT
@@ -148,11 +184,9 @@ void AnimationClass::LoadAnimationFromFile(char* animationFileName, string& text
 			endIndex = line.find("\r");
 			line.copy(buffer, commaIndex, 0);
 			floatX = atof(buffer);
-			//buffer[0] = 0;
 			line.copy(buffer, (endIndex - commaIndex), commaIndex + 1);
-			//buffer[2] = 0;
 			floatY = atof(buffer);
-			//buffer[0] = 0;
+			memset(&buffer[0], 0, sizeof(buffer));
 			tempFrame.UVs[BitmapClass::TOP_RIGHT] = XMFLOAT2(floatX / imageWidth, floatY / imageHeight);
 
 			// BOTTOM LEFT
@@ -161,10 +195,9 @@ void AnimationClass::LoadAnimationFromFile(char* animationFileName, string& text
 			endIndex = line.find("\r");
 			line.copy(buffer, commaIndex, 0);
 			floatX = atof(buffer);
-			//buffer[0] = 0;
 			line.copy(buffer, endIndex - commaIndex, commaIndex + 1);
 			floatY = atof(buffer);
-			//buffer[0] = 0;
+			memset(&buffer[0], 0, sizeof(buffer));
 			tempFrame.UVs[BitmapClass::BOTTOM_LEFT] = XMFLOAT2(floatX / imageWidth, floatY / imageHeight);
 
 			// BOTTOM RIGHT
@@ -173,10 +206,9 @@ void AnimationClass::LoadAnimationFromFile(char* animationFileName, string& text
 			endIndex = line.find("\r");
 			line.copy(buffer, commaIndex, 0);
 			floatX = atof(buffer);
-			//buffer[0] = 0;
 			line.copy(buffer, endIndex - commaIndex, commaIndex + 1);
 			floatY = atof(buffer);
-			//buffer[0] = 0;
+			memset(&buffer[0], 0, sizeof(buffer));
 			tempFrame.UVs[BitmapClass::BOTTOM_RIGHT] = XMFLOAT2(floatX / imageWidth, floatY / imageHeight);
 
 			m_FrameList.push_back(tempFrame);

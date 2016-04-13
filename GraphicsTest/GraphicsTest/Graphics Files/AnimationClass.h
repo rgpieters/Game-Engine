@@ -11,7 +11,7 @@ using namespace std;
 class AnimationClass
 {
 public:
-	enum ANIMATION_TYPE { NONE, ONCE, LOOP, OSCILIATING, NUM_TYPES};
+	enum ANIMATION_TYPE { NONE, ONCE, LOOP, REVERSE, OSCILLATING, NUM_TYPES};
 	AnimationClass();
 	AnimationClass(const AnimationClass& other);
 	~AnimationClass();
@@ -27,8 +27,9 @@ public:
 	void SetRotation(float rot)			{ m_Bitmap->SetRotation(rot); }
 	void SetType(ANIMATION_TYPE type)	{ m_AnimationType = type; }
 	void PlayAnimation()				{ m_PlayAnimation = true; }
-	void StopAnimation()				{ m_PlayAnimation = false; }
+	void StopAnimation()				{ m_PlayAnimation = false; m_OscillatingUpwards = true; }
 	void SetIsFlipped(bool flipped)		{ m_IsFlipped = flipped; }
+	string GetName()					{ return m_AnimationName; }
 private:
 	struct Frame
 	{
@@ -41,9 +42,11 @@ private:
 	float m_Speed;
 	bool m_PlayAnimation;
 	bool m_IsFlipped;
+	bool m_OscillatingUpwards;
 	ANIMATION_TYPE m_AnimationType;
 	BitmapClass* m_Bitmap;
 	std::vector<Frame> m_FrameList;
+	string m_AnimationName;
 
 	void LoadAnimationFromFile(char* animationFileName, string& textureFileName);
 };

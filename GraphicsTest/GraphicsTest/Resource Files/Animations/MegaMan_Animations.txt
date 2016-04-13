@@ -1,0 +1,2 @@
+Resource Files\Animations\MegaMan_Idle.txt
+Resource Files\Animations\MegaMan_Walk.txt

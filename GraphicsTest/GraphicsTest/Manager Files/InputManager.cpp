@@ -4,7 +4,6 @@
 InputManager::InputManager()
 {
 	RegisterDevices();
-	//Facade::GetInstance()->RegisterClient("CameraMoveFoward", this);
 }
 
 InputManager::~InputManager()

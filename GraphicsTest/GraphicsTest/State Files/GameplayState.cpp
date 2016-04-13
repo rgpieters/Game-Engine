@@ -37,7 +37,7 @@ void GameplayState::Initialize(ID3D11Device* device, ID3D11DeviceContext* device
 	uvs[BitmapClass::BOTTOM_RIGHT] = XMFLOAT2(0.125f, 0.5f);
 
 	m_PlayerObject = new PlayerObject();
-	m_PlayerObject->Initialize(device, deviceContext, hwnd, 0, 0, "Resource Files/Animations/Player_Anim_Idle.txt", "Resource Files/myColor", uvs, 108, 140, BaseObject::PLAYER_OBJECT);
+	m_PlayerObject->Initialize(device, deviceContext, hwnd, 0, 0, "Resource Files/Animations/MegaMan_Animations.txt", "Resource Files/myColor", uvs, 64, 64, BaseObject::PLAYER_OBJECT);
 	m_ObjectManager->Add((BaseObject*)m_PlayerObject);
 
 	m_EventManager->RegisterClient("playerKeyUp.Up", (IListener*)m_PlayerObject);

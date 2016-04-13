@@ -8,3 +8,5 @@ GraphicsTest/GraphicsTest/Debug/GraphicsTest.log
 GraphicsTest/GraphicsTest/Debug/GraphicsTest.tlog/link.write.1.tlog
 *.tlog
 GraphicsTest/GraphicsTest.sdf
+*.suo
+/GraphicsTest/GraphicsTest.VC.VC.opendb

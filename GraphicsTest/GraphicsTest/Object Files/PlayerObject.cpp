@@ -13,10 +13,10 @@ PlayerObject::~PlayerObject()
 {
 }
 
-bool PlayerObject::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, HWND hwnd, float posX, float posY, char* textureFileName, char* basisShaderFileName, XMFLOAT2 uvs[4],
+bool PlayerObject::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext, HWND hwnd, float posX, float posY, char* animationsFile, char* basisShaderFileName, XMFLOAT2 uvs[4],
 	float bitmapWidth, float bitmapHeight, OBJECT_TYPE objectType)
 {
-	return BaseObject::Initialize(device, deviceContext, hwnd, posX, posY, textureFileName, basisShaderFileName, uvs, bitmapWidth, bitmapHeight, objectType, AnimationClass::LOOP);
+	return BaseObject::Initialize(device, deviceContext, hwnd, posX, posY, animationsFile, basisShaderFileName, uvs, bitmapWidth, bitmapHeight, objectType, AnimationClass::LOOP);
 }
 
 void PlayerObject::Shutdown()
@@ -30,7 +30,7 @@ void PlayerObject::Update(float fDt)
 	m_position.y += m_velocity.y * fDt;	
 
 	BaseObject::Update(fDt);
-	m_Animation->PlayAnimation();
+	m_Animations[m_currentAnimation]->PlayAnimation();
 }
 
 void PlayerObject::CheckCollision(BaseObject* base)
@@ -43,7 +43,7 @@ void PlayerObject::CheckCollision(BaseObject* base)
 		m_position.y += tempMTV.y;
 	}
 
-	m_Animation->SetPosition(m_position);
+	m_Animations[m_currentAnimation]->SetPosition(m_position);
 }
 
 void PlayerObject::HandleEvent(Event* pEvent)
@@ -51,47 +51,45 @@ void PlayerObject::HandleEvent(Event* pEvent)
 	if (pEvent->GetEventID() == "playerKeyUp.Up")
 	{
 		SetVelocityY(0.0);
-		m_Animation->StopAnimation();
+		ChangeAnimation("Idle");
 	}
 	else if (pEvent->GetEventID() == "playerKeyUp.Down")
 	{
 		SetVelocityY(0.0);
-		m_Animation->StopAnimation();
+		ChangeAnimation("Idle");
 	}
 	else if (pEvent->GetEventID() == "playerKeyUp.Right")
 	{
 		SetVelocityX(0.0);
-		m_Animation->StopAnimation();
+		ChangeAnimation("Idle");
+		m_Animations[m_currentAnimation]->SetScale(XMFLOAT2(1.0f, 1.0f));
 	}
 	else if (pEvent->GetEventID() == "playerKeyUp.Left")
 	{
 		SetVelocityX(0.0);
-		m_Animation->StopAnimation();
+		ChangeAnimation("Idle");
+		m_Animations[m_currentAnimation]->SetScale(XMFLOAT2(-1.0f, 1.0f));
 	}
 	else if (pEvent->GetEventID() == "playerKeyDown.Up")
 	{
 		SetVelocityY(25.0f);
-		m_Animation->PlayAnimation();
+		ChangeAnimation("Walk");
 	}
 	else if (pEvent->GetEventID() == "playerKeyDown.Down")
 	{
 		SetVelocityY(-25.0f);
-		m_Animation->PlayAnimation();
+		ChangeAnimation("Walk");
 	}
 	else if (pEvent->GetEventID() == "playerKeyDown.Right")
 	{
 		SetVelocityX(25.0f);
-		//m_Animation->SetIsFlipped(false);
-		m_Animation->SetScale(XMFLOAT2(1.0f, 1.0f));
-		m_Animation->SetType(AnimationClass::LOOP);
-		m_Animation->PlayAnimation();
+		ChangeAnimation("Walk");
+		m_Animations[m_currentAnimation]->SetScale(XMFLOAT2(1.0f, 1.0f));
 	}
 	else if (pEvent->GetEventID() == "playerKeyDown.Left")
 	{
 		SetVelocityX(-25.0f);
-		//m_Animation->SetIsFlipped(true);
-		m_Animation->SetScale(XMFLOAT2(-1.0f, 1.0f));
-		m_Animation->SetType(AnimationClass::OSCILIATING);
-		m_Animation->PlayAnimation();
+		ChangeAnimation("Walk");
+		m_Animations[m_currentAnimation]->SetScale(XMFLOAT2(-1.0f, 1.0f));
 	}
 }

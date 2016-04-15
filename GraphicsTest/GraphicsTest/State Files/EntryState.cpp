@@ -38,7 +38,7 @@ BaseState::STATE_ACTIONS EntryState::Update(float fDt)
 {
 	if (m_GotToMenu)
 	{
-		Locator::GetSoundManager().PlaySoundFile("beepSound", SoundManager::SOUND_EFFECTS);
+		//Locator::GetSoundManager().PlaySoundFile("beepSound", SoundManager::SOUND_EFFECTS);
 		return MOVE_TO_MENU;
 	}
 		
@@ -53,6 +53,7 @@ void EntryState::Render(ID3D11DeviceContext* deviceContext, XMMATRIX& viewMatrix
 	m_Camera->Render();
 	XMMATRIX tempView;
 	m_Camera->GetViewMatrix(tempView);
+	Locator::GetFrustum().ConstructFrustum(projectionMatrix, tempView);
 
 	m_BitmapFont->Render(deviceContext, tempView, projectionMatrix, "ENTRY", m_Camera->GetPosition().x - 400, m_Camera->GetPosition().y + 268, XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
 	m_BitmapFont->Render(deviceContext, tempView, projectionMatrix, "PRESS SPACE TO CONTINUE", m_Camera->GetPosition().x - 365, m_Camera->GetPosition().y, XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -74,40 +75,6 @@ LRESULT CALLBACK EntryState::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam,
 			if (keyPressed == VKEY_SPACE && keyUp)
 			{
 				m_GotToMenu = true;
-			}
-
-			// Volume/Panning testing
-			if (keyPressed == VKEY_RIGHT)
-			{
-				m_PanLevel += 0.05f;
-				if (m_PanLevel > 1.0f)
-					m_PanLevel = 1.0f;
-
-				Locator::GetSoundManager().SetPanLevel(m_PanLevel);
-			}
-			if (keyPressed == VKEY_LEFT)
-			{
-				m_PanLevel -= 0.05f;
-				if (m_PanLevel < -1.0f)
-					m_PanLevel = -1.0f;
-				Locator::GetSoundManager().SetPanLevel(m_PanLevel);
-			}
-
-			if (keyPressed == VKEY_UP)
-			{
-				m_MasterVolume += 0.05f;
-				if (m_MasterVolume > 1.0f)
-					m_MasterVolume = 1.0f;
-				Locator::GetSoundManager().SetMasterVolume(m_MasterVolume);
-				Locator::GetConsoleWindow().WriteToConsole(m_MasterVolume);
-			}
-			if (keyPressed == VKEY_DOWN)
-			{
-				m_MasterVolume -= 0.05f;
-				if (m_MasterVolume < 0.0f)
-					m_MasterVolume = 0.0f;
-				Locator::GetSoundManager().SetMasterVolume(m_MasterVolume);
-				Locator::GetConsoleWindow().WriteToConsole(m_MasterVolume);
 			}
 			return 0;
 		}

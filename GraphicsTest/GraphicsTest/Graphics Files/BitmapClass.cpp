@@ -1,4 +1,5 @@
 #include "BitmapClass.h"
+#include "../Utility Files/Locator.h"
 
 BitmapClass::BitmapClass() : m_rotation(0)
 {
@@ -23,6 +24,7 @@ BitmapClass::BitmapClass() : m_rotation(0)
 	m_collisionRectVertexBuffer = NULL;
 
 	m_renderCollisionRect = false;
+	m_InitialRender = true;
 }
 
 BitmapClass::BitmapClass(const BitmapClass& other)
@@ -150,13 +152,18 @@ void BitmapClass::Shutdown()
 
 bool BitmapClass::Render(ID3D11DeviceContext* deviceContext, XMMATRIX& viewMatrix, XMMATRIX& projectionMatrix)
 {
+	if (!Locator::GetFrustum().CheckRectangle(m_position.x, m_position.y, 1.0f, m_bitmapWidth / 2, m_bitmapHeight / 2, 0.0f) && !m_InitialRender )
+	{
+		return true;
+	}
+	m_InitialRender = false;
+
 	if (!m_renderCollisionRect)
 	{
 		unsigned int stride = sizeof(VertexPos);
 		unsigned int offset = 0;
 
 		UpdateBuffers(deviceContext);
-
 		deviceContext->IASetInputLayout(m_inputLayout);
 		deviceContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
 		deviceContext->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
@@ -184,6 +191,10 @@ bool BitmapClass::Render(ID3D11DeviceContext* deviceContext, XMMATRIX& viewMatri
 		unsigned int offset = 0;
 
 		deviceContext->IASetInputLayout(m_collisionRectInputLayout);
+		if (!Locator::GetFrustum().CheckRectangle(m_position.x, m_position.y, 1.0f, m_bitmapWidth / 2, m_bitmapHeight / 2, 0.0f))
+		{
+			return true;
+		}
 		deviceContext->IASetVertexBuffers(0, 1, &m_collisionRectVertexBuffer, &stride, &offset);
 		deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 

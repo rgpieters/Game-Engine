@@ -20,7 +20,7 @@ public:
 	LRESULT CALLBACK MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam);
 
 private:
-	bool			m_Exit;
+	bool			m_Paused;
 	TileMap*		m_TileMap;
 	PlayerObject*	m_PlayerObject;
 };

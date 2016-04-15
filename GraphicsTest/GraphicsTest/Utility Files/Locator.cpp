@@ -4,6 +4,7 @@ void Locator::Initialize()
 { 
 	m_consoleWindow = &m_nullConsoleWindow;
 	m_soundManger = &m_nullSoundManager;
+	m_frustum = &m_nullFrustum;
 }
 void Locator::Shutdown()
 { 
@@ -17,6 +18,11 @@ void Locator::Shutdown()
 		m_soundManger->Shutdown();
 		delete m_soundManger;
 		m_soundManger = NULL;
+	}
+	if (m_frustum)
+	{
+		delete m_frustum;
+		m_frustum = nullptr;
 	}
 }
 
@@ -33,6 +39,11 @@ ConsoleWindow& Locator::GetConsoleWindow()
 SoundManager& Locator::GetSoundManager()
 {
 	return *m_soundManger;
+}
+
+FrustumClass& Locator::GetFrustum()
+{
+	return *m_frustum;
 }
 
 void Locator::SetConsoleWindow(ConsoleWindow* consoleWindowService)
@@ -56,5 +67,17 @@ void Locator::SetSoundManager(SoundManager* soundManager)
 	else
 	{
 		m_soundManger = soundManager;
+	}
+}
+
+void Locator::SetFrustum(FrustumClass* frustum)
+{
+	if (frustum == NULL)
+	{
+		m_frustum = &m_nullFrustum;
+	}
+	else
+	{
+		m_frustum = frustum;
 	}
 }

@@ -120,6 +120,12 @@
     <ClCompile Include="Graphics Files\AnimationClass.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics Files\FrustumClass.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="State Files\PauseState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility Files\Timer.h">
@@ -223,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="Graphics Files\AnimationClass.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics Files\FrustumClass.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility Files\NullFrustum.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="State Files\PauseState.h">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "State Files\MenuState.h"
 #include "State Files\OptionsState.h"
 #include "State Files\GameplayState.h"
+#include "State Files\PauseState.h"
 
 
 SystemClass::SystemClass()
@@ -33,9 +34,13 @@ bool SystemClass::Initialize()
 	SoundManager* tempSoundManager = new SoundManager();
 	tempSoundManager->Initialize();
 
+	FrustumClass* tempFrustum = new FrustumClass();
+	tempFrustum->Initialize(SCREEN_DEPTH);
+
 	Locator::Initialize();
 	Locator::SetConsoleWindow(tempConsoleWindow);
 	Locator::SetSoundManager(tempSoundManager);
+	Locator::SetFrustum(tempFrustum);
 
 	InitializeWindows(screenWidth, screenHeight);
 
@@ -124,7 +129,7 @@ bool SystemClass::Frame()
 		break;
 		case BaseState::MOVE_TO_MENU:
 		{
- 			BaseState::STATES state = m_StateList.back()->GetState();
+			BaseState::STATES state = m_StateList.back()->GetState();
 			
 			vector<BaseState*>::iterator iter = m_StateList.end();
 			m_StateList.back()->Shutdown();
@@ -157,14 +162,34 @@ bool SystemClass::Frame()
 		break;
 		case BaseState::MOVE_TO_OPTIONS:
 		{
+			BaseState::STATES state = m_StateList.back()->GetState();
+
 			OptionsState* tempBaseState = new OptionsState();
-			tempBaseState->Initialize(m_Graphics->GetDevice(), m_Graphics->GetDeviceContext(), m_hwnd, m_screenWidth, m_screenHeight);
+			tempBaseState->Initialize(m_Graphics->GetDevice(), m_Graphics->GetDeviceContext(), m_hwnd, m_screenWidth, m_screenHeight, state);
+			m_StateList.push_back((BaseState*)tempBaseState);
+		}
+		break;
+		case BaseState::MOVE_TO_PAUSE:
+		{
+			BaseState::STATES state = m_StateList.back()->GetState();
+
+			if (state == BaseState::OPTIONS_STATE)
+			{
+				m_StateList.back()->Shutdown();
+				delete m_StateList.back();
+				m_StateList.pop_back();
+				break;
+			}
+
+			PauseState* tempBaseState = new PauseState();
+			tempBaseState->Initialize(m_Graphics->GetDevice(), m_Graphics->GetDeviceContext(), m_hwnd, m_screenWidth, m_screenHeight, m_StateList.back());
 			m_StateList.push_back((BaseState*)tempBaseState);
 		}
 		break;
 	}
 
 	m_Graphics->RenderStart();
+
 	m_StateList.back()->Render(m_Graphics->GetDeviceContext(), tempView, m_Graphics->GetOrthoMatrix());
 
 	m_Graphics->RenderEnd();

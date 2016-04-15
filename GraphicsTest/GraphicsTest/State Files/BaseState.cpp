@@ -84,7 +84,9 @@ BaseState::STATE_ACTIONS BaseState::Update(float fDt)
 
 void BaseState::Render(ID3D11DeviceContext* deviceContext, XMMATRIX& viewMatrix, XMMATRIX& projectionMatrix)
 {
-	
+	//m_Camera->Render();
+	//m_Camera->GetViewMatrix(m_viewMatrix);
+
 }
 
 LRESULT CALLBACK BaseState::MessageHandler(HWND, UINT, WPARAM, LPARAM)

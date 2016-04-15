@@ -3,8 +3,6 @@
 
 #include <Windows.h>
 #include "d3dclass.h"
-//#include "textureshaderclass.h"
-//#include "textclass.h"
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -33,7 +31,7 @@ public:
 	XMMATRIX GetOrthoMatrix();
 
 private:
-	D3DClass* m_D3D;
+	D3DClass*		m_D3D;
 };
 
 #endif

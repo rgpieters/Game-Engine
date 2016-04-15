@@ -161,6 +161,7 @@
     <ClCompile Include="Graphics Files\BitmapFontClass.cpp" />
     <ClCompile Include="Graphics Files\cameraclass.cpp" />
     <ClCompile Include="Graphics Files\d3dclass.cpp" />
+    <ClCompile Include="Graphics Files\FrustumClass.cpp" />
     <ClCompile Include="Graphics Files\graphicsclass.cpp" />
     <ClCompile Include="Graphics Files\pch.cpp" />
     <ClCompile Include="Graphics Files\WICTextureLoader.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="State Files\GameplayState.cpp" />
     <ClCompile Include="State Files\MenuState.cpp" />
     <ClCompile Include="State Files\OptionsState.cpp" />
+    <ClCompile Include="State Files\PauseState.cpp" />
     <ClCompile Include="systemclass.cpp" />
     <ClCompile Include="TileMap Files\TileMap.cpp" />
     <ClCompile Include="Utility Files\ConsoleWindow.cpp" />
@@ -193,6 +195,7 @@
     <ClInclude Include="Graphics Files\cameraclass.h" />
     <ClInclude Include="Graphics Files\d3dclass.h" />
     <ClInclude Include="Graphics Files\DirectXHelpers.h" />
+    <ClInclude Include="Graphics Files\FrustumClass.h" />
     <ClInclude Include="Graphics Files\graphicsclass.h" />
     <ClInclude Include="Graphics Files\pch.h" />
     <ClInclude Include="Graphics Files\PlatformHelpers.h" />
@@ -209,11 +212,13 @@
     <ClInclude Include="State Files\GameplayState.h" />
     <ClInclude Include="State Files\MenuState.h" />
     <ClInclude Include="State Files\OptionsState.h" />
+    <ClInclude Include="State Files\PauseState.h" />
     <ClInclude Include="systemclass.h" />
     <ClInclude Include="TileMap Files\TileMap.h" />
     <ClInclude Include="Utility Files\ConsoleWindow.h" />
     <ClInclude Include="Utility Files\Locator.h" />
     <ClInclude Include="Utility Files\NullConsoleWindow.h" />
+    <ClInclude Include="Utility Files\NullFrustum.h" />
     <ClInclude Include="Utility Files\NullSoundManager.h" />
     <ClInclude Include="Utility Files\Timer.h" />
     <ClInclude Include="Utility Files\tinyxml2.h" />

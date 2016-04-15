@@ -3,7 +3,7 @@
 GameplayState::GameplayState()
 {
 	m_State = GAMEPLAY_STATE;
-	m_Exit = false;
+	m_Paused = false;
 	m_TileMap = NULL;
 	m_PlayerObject = NULL;
 }
@@ -69,8 +69,11 @@ void GameplayState::Shutdown()
 
 BaseState::STATE_ACTIONS GameplayState::Update(float fDt)
 {
-	if (m_Exit)
-		return FULL_SHUTDOWN;
+	if (m_Paused)
+	{
+		m_Paused = false;
+		return MOVE_TO_PAUSE;
+	}
 
 	BaseState::Update(fDt);
 	m_Camera->SetPlayerPos(m_PlayerObject->GetPosition());
@@ -84,6 +87,7 @@ void GameplayState::Render(ID3D11DeviceContext* deviceContext, XMMATRIX& viewMat
 	m_Camera->Render();
 	XMMATRIX tempView;
 	m_Camera->GetViewMatrix(tempView);
+	Locator::GetFrustum().ConstructFrustum(projectionMatrix, tempView);
 
 	m_TileMap->BackgroundForegroundRender(deviceContext, tempView, projectionMatrix);
 	m_ObjectManager->Render(deviceContext, tempView, projectionMatrix);
@@ -100,9 +104,9 @@ LRESULT CALLBACK GameplayState::MessageHandler(HWND hwnd, UINT umsg, WPARAM wpar
 			bool keyUp;
 			USHORT keyPressed = m_Input->GetInput(lparam, keyUp);
 
-			if (keyPressed == VKEY_ESCAPE)
+			if (keyPressed == VKEY_ESCAPE && keyUp)
 			{
-				m_Exit = true;
+				m_Paused = true;
 			}
 			if (keyPressed == VKEY_UP && keyUp)
 			{
@@ -136,7 +140,6 @@ LRESULT CALLBACK GameplayState::MessageHandler(HWND hwnd, UINT umsg, WPARAM wpar
 			{
 				m_EventManager->SendEvent("playerKeyDown.Left");
 			}
-
 			return 0;
 		}
 		break;

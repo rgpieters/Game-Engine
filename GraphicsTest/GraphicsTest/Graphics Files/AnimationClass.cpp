@@ -72,8 +72,6 @@ void AnimationClass::Update(float fDt)
 				m_CurrentFrame++;
 				if (m_CurrentFrame >= (int)m_FrameList.size())
 					m_CurrentFrame = 0;
-
-				Locator::GetConsoleWindow().WriteToConsole(m_CurrentFrame);
 			}
 			break;
 			case REVERSE:

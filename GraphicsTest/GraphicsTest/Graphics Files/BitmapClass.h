@@ -70,6 +70,7 @@ private:
 	float m_bitmapHeight;
 	float m_rotation;
 	bool m_renderCollisionRect;
+	bool m_InitialRender;
 
 	// Bitmap Rendering
 	ID3D11ShaderResourceView* m_textureView;

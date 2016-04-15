@@ -1,4 +1,5 @@
 #include "PlayerObject.h"
+#include "../Utility Files/Locator.h"
 
 PlayerObject::PlayerObject() : BaseObject()
 {
@@ -28,6 +29,9 @@ void PlayerObject::Update(float fDt)
 {
 	m_position.x += m_velocity.x * fDt;
 	m_position.y += m_velocity.y * fDt;	
+
+	Locator::GetConsoleWindow().WriteToConsole(m_position.x);
+	Locator::GetConsoleWindow().WriteToConsole(m_position.y);
 
 	BaseObject::Update(fDt);
 	m_Animations[m_currentAnimation]->PlayAnimation();

@@ -628,12 +628,12 @@ bool BitmapClass::InitializeBlending(ID3D11Device* device, ID3D11DeviceContext* 
 
 	rasterizerState.FillMode = D3D11_FILL_SOLID;
 	rasterizerState.CullMode = D3D11_CULL_NONE;
-	rasterizerState.FrontCounterClockwise = true;
+	rasterizerState.FrontCounterClockwise = false; // Originally true
 	rasterizerState.DepthBias = false;
 	rasterizerState.DepthBiasClamp = 0;
 	rasterizerState.SlopeScaledDepthBias = 0;
 	rasterizerState.DepthClipEnable = true;
-	rasterizerState.ScissorEnable = true;
+	rasterizerState.ScissorEnable = false; // Originally true
 	rasterizerState.MultisampleEnable = false;
 	rasterizerState.AntialiasedLineEnable = false;
 	
